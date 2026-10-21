@@ -30,6 +30,20 @@
 | MRR@10 | 0.861 | 0.902 | +0.041 | −0.011 to +0.093 | 0.15 |
 | F1@5 | 0.319 | 0.326 | +0.007 | −0.007 to +0.021 | 0.32 |
 
+## How to read the metrics / 指標判讀
+
+Each question has exactly one gold paper; all metrics ask whether it was retrieved and how high it ranked. Full guide (EN + 中文): [metrics-guide.md](metrics-guide.md).
+每題只有一篇正確論文，所有指標都在問「有沒有找到、排第幾名」。完整說明（中英）：[metrics-guide.md](metrics-guide.md)。
+
+| Metric | Meaning / 意思 | Reading these results / 本次結果怎麼看 |
+|---|---|---|
+| **Hit@5** | gold paper in the top 5 / 正確論文在前 5 名 | 0.95 → 0.98: v1 missed 5 of 100 questions, v2 missed 2. v1 有 5 題沒進前 5 名，v2 剩 2 題。 |
+| **Hit@10** | gold paper in the top 10 / 正確論文在前 10 名 | 0.97 → 1.00: v2 found every gold paper within the top 10. v2 每題都在前 10 名。 |
+| **MRR@10** | rank 1 → 1, rank 2 → ½, rank 3 → ⅓ … not in top 10 → 0 / 排名倒數的平均 | 0.852 → 0.895: v2 ranks the gold paper slightly higher. v2 把正確論文排得稍前。 |
+| **F1@5** | precision–recall balance in the top 5 / 前 5 名精確率與召回率的平衡 | 0.317 → 0.327: **at most 0.333** with one gold paper (precision ≤ 1/5); a rescaling of Hit@5, not a quality judgment. 每題只有 1 篇正確時最高 0.333，等同 Hit@5 換尺度，不宜用來判斷好壞。 |
+
+**Most informative here / 本評測最有參考價值的指標：** MRR@10 and Hit@5. F1 and nDCG become informative in Evaluation 2, where each topic has several relevant papers. F1 與 nDCG 要到評測 2（每題多篇相關論文）才有意義。
+
 ## Interpretation
 
 - **No statistically significant difference.** v2 is numerically higher on every metric (e.g. MRR@10 +0.04), but every confidence interval includes or touches zero.

@@ -20,7 +20,7 @@ The rebuilt pipeline (v2) uses one shared extraction module for **both** the RAG
 
 ## Preliminary results
 
-**Evaluation 1 — known-item queries** (2026-10-21; v1 vs v2; 100 questions, one gold paper each; full report: [docs/results/eval1-known-item-2026-10-21.md](docs/results/eval1-known-item-2026-10-21.md))
+**Evaluation 1 — known-item queries** (2026-10-21; v1 vs v2; 100 questions, one gold paper each; full report: [docs/results/eval1-known-item-2026-10-21.md](docs/results/eval1-known-item-2026-10-21.md); metric guide: [metrics-guide.md](docs/results/metrics-guide.md))
 
 | Metric | What it measures | v1 | v2 | Δ (95% CI) |
 |---|---|---|---|---|
@@ -39,6 +39,7 @@ The rebuilt pipeline (v2) uses one shared extraction module for **both** the RAG
 |---|---|
 | [docs/method-v1-v2.md](docs/method-v1-v2.md) | v1 vs v2 text pipeline, flowchart and first-pass results |
 | [docs/results/eval1-known-item-2026-10-21.md](docs/results/eval1-known-item-2026-10-21.md) | Evaluation 1 results (known-item queries) |
+| [docs/results/metrics-guide.md](docs/results/metrics-guide.md) | How to read the evaluation metrics (EN + zh-TW) |
 | [docs/related-work.md](docs/related-work.md) | Related research and tools, verified with sources |
 | [docs/design/](docs/design/00-overview.md) | **Design specifications** (overview, extraction, chunking & index, read-aloud, evaluation, acceptance tests) — enough to rebuild the system without our code |
 | [harness/](harness/README.md) | **Harness** for rebuilding with a coding agent: standing instructions (`AGENTS.md`), phased build plan with gates, prompts |

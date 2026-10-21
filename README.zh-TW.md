@@ -20,7 +20,7 @@
 
 ## 初步結果
 
-**評測 1：已知答案查詢**（2026-10-21；v1 對 v2；100 題，每題只有 1 篇正確論文；完整報告：[docs/results/eval1-known-item-2026-10-21.md](docs/results/eval1-known-item-2026-10-21.md)）
+**評測 1：已知答案查詢**（2026-10-21；v1 對 v2；100 題，每題只有 1 篇正確論文；完整報告：[docs/results/eval1-known-item-2026-10-21.md](docs/results/eval1-known-item-2026-10-21.md)；指標說明：[metrics-guide.md](docs/results/metrics-guide.md)）
 
 | 指標 | 衡量什麼 | v1 | v2 | 差異（95% 信賴區間） |
 |---|---|---|---|---|
@@ -39,6 +39,7 @@
 |---|---|
 | [docs/method-v1-v2.md](docs/method-v1-v2.md) | v1 與 v2 文字處理流程、流程圖與第一輪結果 |
 | [docs/results/eval1-known-item-2026-10-21.md](docs/results/eval1-known-item-2026-10-21.md) | 評測 1 結果（已知答案查詢） |
+| [docs/results/metrics-guide.md](docs/results/metrics-guide.md) | 評測指標判讀說明（中英） |
 | [docs/related-work.md](docs/related-work.md) | 相關學術研究與工具（皆附出處查證） |
 | [docs/design/](docs/design/00-overview.zh-TW.md) | **設計規格**（總覽、擷取、切塊與索引、朗讀、評測、驗收測試），不需要我們的程式碼也能重建系統（中英文版） |
 | [harness/](harness/README.md) | **Harness**：用程式代理重建系統的常駐指示（`AGENTS.md`）、分階段建置計畫與驗收關卡、提示詞 |
