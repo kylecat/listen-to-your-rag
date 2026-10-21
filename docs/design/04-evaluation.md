@@ -33,7 +33,7 @@ Per-query paired comparison: Wilcoxon signed-rank test and bootstrap 95% CI (10,
 
 ## Baselines / 比較組
 
-v1 (original), v2 (this pipeline), and a learning-based extractor (GROBID or Docling) with the same chunking and embedding model ([#5](https://github.com/kylecat/listen-to-your-rag/issues/5)).
+The current evaluation compares v1 (original) and v2 (this pipeline). Adding a learning-based extractor (GROBID or Docling) with the same chunking and embedding model is **future work** ([#5](https://github.com/kylecat/listen-to-your-rag/issues/5)).
 
 ## Threats to validity / 效度威脅
 

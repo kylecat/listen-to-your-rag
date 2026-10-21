@@ -32,7 +32,7 @@
 
 ## 比較組
 
-v1（原版）、v2（本處理流程），以及一個以學習為基礎的擷取器（GROBID 或 Docling），三者使用相同的切塊方式與向量模型（[#5](https://github.com/kylecat/listen-to-your-rag/issues/5)）。
+目前的評測比較 v1（原版）與 v2（本處理流程）。加入以學習為基礎的擷取器（GROBID 或 Docling，使用相同的切塊方式與向量模型）列為**未來發展方向**（[#5](https://github.com/kylecat/listen-to-your-rag/issues/5)）。
 
 ## 效度威脅
 

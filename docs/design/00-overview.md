@@ -51,4 +51,4 @@ PDF ─► [1 Extraction] ─► structured document ─┬─► [2 Chunk + emb
 
 ## Out of scope (for now) / 目前不含
 
-Figures and tables (planned: captions → tables → figure descriptions), learning-based layout models (planned as an evaluation baseline), multilingual embeddings.
+Figures and tables (planned: captions → tables → figure descriptions), learning-based layout models (future comparison), multilingual embeddings.

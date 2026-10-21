@@ -41,7 +41,7 @@ More documents (method details, evaluation protocol, results, figure/table handl
 
 ## Scope and limitations
 
-- This is a **rule-based** layout approach. Published comparisons show rule-based parsers struggle on scientific papers relative to learning-based tools (e.g. Nougat, Docling, GROBID); we plan to include such a baseline in the evaluation.
+- This is a **rule-based** layout approach. Published comparisons show rule-based parsers struggle on scientific papers relative to learning-based tools (e.g. Nougat, Docling, GROBID); comparing against such tools is left as **future work** (#5).
 - Copyrighted papers, extracted text and model outputs derived from them are **not** distributed.
 - Results are from one domain corpus and may not generalise.
 

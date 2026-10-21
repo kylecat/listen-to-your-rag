@@ -57,7 +57,7 @@ The low overlap of top-5 results means v2 changes what is retrieved; whether it 
 
 ## Limitations / 限制
 
-- Rule-based layout handling; learning-based tools are expected to do better on scientific PDFs and will be added as a baseline ([#5](https://github.com/kylecat/listen-to-your-rag/issues/5)).
+- Rule-based layout handling; learning-based tools are expected to do better on scientific PDFs; a comparison with them is future work ([#5](https://github.com/kylecat/listen-to-your-rag/issues/5)).
 - Figures and tables are currently dropped ([#6](https://github.com/kylecat/listen-to-your-rag/issues/6)–[#8](https://github.com/kylecat/listen-to-your-rag/issues/8)).
 - Scans with a scrambled text layer cannot be repaired by reordering.
 - Results come from one domain corpus.
