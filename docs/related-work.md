@@ -57,7 +57,7 @@ After extraction, the segmentation of text into retrieval units determines what 
 
 *Implications for this work.*
 - v2 replaces fixed 500-word chunks with section-labelled, sentence-aligned chunks while keeping the embedding model fixed, so retrieval differences can be attributed to the text layer.
-- The low overlap between v1 and v2 top-5 results (1.8 of 5 papers) is consistent with [7]: changing the unit changes the ranking. Improvement must therefore be demonstrated by evaluation ([#3](https://github.com/kylecat/listen-to-your-rag/issues/3), [#4](https://github.com/kylecat/listen-to-your-rag/issues/4)), not assumed.
+- The low overlap between v1 and v2 top-5 results (1.8 of 5 papers) is consistent with the sensitivity of retrieval to the choice of unit reported in [7]. Improvement must therefore be demonstrated by evaluation ([#3](https://github.com/kylecat/listen-to-your-rag/issues/3), [#4](https://github.com/kylecat/listen-to-your-rag/issues/4)), not assumed.
 
 文字擷取之後，如何切分為檢索單位決定了檢索器能找到什麼。文獻將切分方式視為一級設計變因：
 
@@ -67,7 +67,7 @@ After extraction, the segmentation of text into retrieval units determines what 
 
 *對本研究的意涵：*
 - v2 以「標有章節、對齊句界」的切塊取代固定 500 字切塊，並固定向量模型，使檢索差異可歸因於文字層。
-- v1 與 v2 前 5 名僅重疊 1.8 篇，與 [7] 的觀察一致：檢索單位改變即改變排名。因此改善與否必須以評測證明，不能預設。
+- v1 與 v2 前 5 名僅重疊 1.8 篇，與 [7] 所報告「檢索結果對檢索單位的選擇敏感」相符。因此改善與否必須以評測證明，不能預設。
 
 | Work | Source | Key point / 重點 |
 |---|---|---|
