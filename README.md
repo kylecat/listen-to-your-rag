@@ -41,5 +41,7 @@ More documents (method details, evaluation protocol, results, figure/table handl
 
 ## License / 授權
 
-License to be decided (copyleft documentation licence under consideration). Until then, all rights reserved.
-授權確認中（考慮採用 copyleft 文件授權）；確定前保留所有權利。
+Documentation in this repository is licensed under **[Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/)** — see [LICENSE](LICENSE). You may share and adapt it with attribution; derivative works must use the same licence.
+本 repo 的文件採用 **CC BY-SA 4.0** 授權：可自由分享與改作，但須註明出處，衍生作品須以相同授權釋出。
+
+Linked papers and tools remain under their own licences. 文中引用的論文與工具依其原授權。
