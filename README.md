@@ -41,6 +41,14 @@ More documents (method details, evaluation protocol, results, figure/table handl
 - Copyrighted papers, extracted text and model outputs derived from them are **not** distributed.
 - Results are from one domain corpus and may not generalise.
 
+## Publication principles / 公開原則
+
+- **Verified citations** — every reference is checked against its primary source; secondary or unverified sources are marked. 引用皆對照原始出處，二手或未查證者另行標註。
+- **Versioned, honest numbers** — results state their date, pipeline version and whether they are preliminary; differences are not reported as improvements until evaluated. 數字標明日期、版本與是否為暫定；未經評測不宣稱改善。
+- **Stated limitations** — scope, failure cases and the fact that the approach builds on established methods are stated explicitly. 明確寫出限制與既有方法的關係。
+- **AI disclosure** — the AI model, its version and its role are disclosed and kept up to date; AI-generated translations, descriptions and judgments are labelled as such. 揭露 AI 模型、版本與角色並隨時更新；AI 產生的內容一律標示。
+- **No private or copyrighted material** — no infrastructure details, credentials or copyrighted paper text are published. 不公開系統細節、帳密或受版權保護的論文內容。
+
 ## Authors and AI disclosure / 作者與 AI 使用揭露
 
 - **Research direction, decisions and review / 研究方向、決策與審閱**: [@kylecat](https://github.com/kylecat)
