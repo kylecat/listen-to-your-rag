@@ -18,6 +18,21 @@ Our first RAG index (v1) extracted PDFs page by page and split text every 500 wo
 
 The rebuilt pipeline (v2) uses one shared extraction module for **both** the RAG index and a text-to-speech read-aloud tool, so what a human hears is exactly what the retriever indexes — turning listening practice into a **quality audit of the RAG corpus**.
 
+## Preliminary results
+
+**Evaluation 1 — known-item queries** (2026-10-21; v1 vs v2; 100 questions, one gold paper each; full report: [docs/results/eval1-known-item-2026-10-21.md](docs/results/eval1-known-item-2026-10-21.md))
+
+| Metric | What it measures | v1 | v2 | Δ (95% CI) |
+|---|---|---|---|---|
+| Hit@5 | gold paper in the top 5 | 0.950 | 0.980 | +0.030 (−0.010 to +0.080) |
+| Hit@10 | gold paper in the top 10 | 0.970 | 1.000 | +0.030 (0.000 to +0.070) |
+| MRR@10 | how high the gold paper ranks (1, ½, ⅓ … within top 10) | 0.852 | 0.895 | +0.043 (−0.009 to +0.099) |
+| F1@5 | precision–recall balance in the top 5 (max 0.333 with one gold paper) | 0.317 | 0.327 | +0.010 (−0.003 to +0.027) |
+
+- v2 is numerically higher on every metric, but **no difference is statistically significant** (Wilcoxon p = 0.08–0.18).
+- **Ceiling effect:** both versions find the gold paper in the top 5 for 95–98% of questions, so this benchmark cannot separate them well. The pooled topic-query evaluation ([#4](https://github.com/kylecat/listen-to-your-rag/issues/4)) is expected to be more discriminating.
+- Excluding the 6 low-quality questions (94 questions) gives the same picture.
+
 ## Contents
 
 | Document | Description |
