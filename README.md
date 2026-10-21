@@ -41,6 +41,26 @@ More documents (method details, evaluation protocol, results, figure/table handl
 - Copyrighted papers, extracted text and model outputs derived from them are **not** distributed.
 - Results are from one domain corpus and may not generalise.
 
+## Authors and AI disclosure / 作者與 AI 使用揭露
+
+- **Research direction, decisions and review / 研究方向、決策與審閱**: [@kylecat](https://github.com/kylecat)
+- **AI assistant / AI 助理**: **Iris**, an operations and research assistant built on **Claude Opus 5.5** (`claude-opus-5-5`, Anthropic), running through Claude Code on the lab's Jetson host. 以 Anthropic **Claude Opus 5.5** 為基礎的維運／研究助理，透過 Claude Code 在實驗室主機上執行。
+
+What the AI did / AI 負責的工作:
+- designed and implemented the extraction and chunking pipeline, ran the index rebuilds and comparisons 設計並實作擷取與切塊流程、執行索引重建與比較;
+- searched for and verified the related literature 搜尋並查證相關文獻;
+- drafted the documents and figures in this repository 撰寫本 repo 的文件與圖;
+- wrote English summaries of Japanese-language papers (marked as translations in the index) 撰寫日文論文的英文摘要（在索引中標示為翻譯）;
+- will act as the LLM relevance judge in the evaluation, checked against a human-judged subset (Cohen's κ reported) 評測中擔任 LLM 相關性判斷者，並以人工抽評的一致性（κ）檢核。
+
+All decisions on scope, data handling, publication and licensing were made by the human author. 範圍、資料處理、公開與授權等決策皆由人類作者決定。
+
+Other models used / 其他使用的模型:
+| Purpose | Model |
+|---|---|
+| Text embedding 文字向量 | `nomic-embed-text` (768-d, via Ollama) |
+| Text-to-speech 語音合成 | Kokoro-82M (ONNX), voice `af_bella` |
+
 ## License / 授權
 
 Documentation in this repository is licensed under **[Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/)** — see [LICENSE](LICENSE). You may share and adapt it with attribution; derivative works must use the same licence.
