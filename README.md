@@ -5,7 +5,7 @@
 **Structure-aware PDF extraction for a domain literature RAG — methods, evaluation and results**
 
 This repository documents the **method and results** of rebuilding the text layer of a literature retrieval-augmented generation (RAG) system for **controlled environment agriculture (CEA)** research — roughly 460 papers on plant factories, vapor pressure deficit, lighting, hydroponics and AI agents.
-It is a **lab notebook in public**: the code is not published here; the methods, design decisions, evaluation protocol and results are.
+It is a **lab notebook in public**: the code is not published here; the methods, design specifications, evaluation protocol and results are — detailed enough to rebuild the system with a coding agent (see [harness](harness/README.md)).
 
 ## Why
 
@@ -24,6 +24,8 @@ The rebuilt pipeline (v2) uses one shared extraction module for **both** the RAG
 |---|---|
 | [docs/method-v1-v2.md](docs/method-v1-v2.md) | v1 vs v2 text pipeline, flowchart and first-pass results |
 | [docs/related-work.md](docs/related-work.md) | Related research and tools, verified with sources |
+| [docs/design/](docs/design/00-overview.md) | **Design specifications** (overview, extraction, chunking & index, read-aloud, evaluation, acceptance tests) — enough to rebuild the system without our code |
+| [harness/](harness/README.md) | **Harness** for rebuilding with a coding agent: standing instructions (`AGENTS.md`), phased build plan with gates, prompts |
 
 More documents (method details, evaluation protocol, results, figure/table handling) will be added as the work progresses.
 
@@ -31,6 +33,7 @@ More documents (method details, evaluation protocol, results, figure/table handl
 
 | Date | Update |
 |---|---|
+| 2026-10-21 | Design specifications and agent harness published, so the system can be rebuilt from documents. |
 | 2026-10-21 | Method write-up and flowchart published (#1). |
 | 2026-10-21 | Repository created; related work published. v2 index built (not yet in production); evaluation (known-item queries + pooled topic queries with blind relevance judgments) planned. |
 
