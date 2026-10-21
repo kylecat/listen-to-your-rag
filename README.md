@@ -23,6 +23,7 @@ The rebuilt pipeline (v2) uses one shared extraction module for **both** the RAG
 | Document | Description |
 |---|---|
 | [docs/method-v1-v2.md](docs/method-v1-v2.md) | v1 vs v2 text pipeline, flowchart and first-pass results |
+| [docs/results/eval1-known-item-2026-10-21.md](docs/results/eval1-known-item-2026-10-21.md) | Evaluation 1 results (known-item queries) |
 | [docs/related-work.md](docs/related-work.md) | Related research and tools, verified with sources |
 | [docs/design/](docs/design/00-overview.md) | **Design specifications** (overview, extraction, chunking & index, read-aloud, evaluation, acceptance tests) — enough to rebuild the system without our code |
 | [harness/](harness/README.md) | **Harness** for rebuilding with a coding agent: standing instructions (`AGENTS.md`), phased build plan with gates, prompts |
@@ -33,6 +34,7 @@ More documents (method details, evaluation protocol, results, figure/table handl
 
 | Date | Update |
 |---|---|
+| 2026-10-21 | Evaluation 1 (known-item, 100 questions): v2 ≥ v1 on all metrics but no significant difference; ceiling effect (#3). |
 | 2026-10-21 | Design specifications and agent harness published, so the system can be rebuilt from documents. |
 | 2026-10-21 | Method write-up and flowchart published (#1). |
 | 2026-10-21 | Repository created; related work published. v2 index built (not yet in production); evaluation (known-item queries + pooled topic queries with blind relevance judgments) planned. |
