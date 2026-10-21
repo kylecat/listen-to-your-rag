@@ -1,0 +1,44 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{font-family:"Noto Sans CJK TC","Noto Serif CJK TC",sans-serif;background:#fff;margin:24px;color:#1f2933;width:1300px}
+h1{font-size:27px;margin:0 0 2px}.sub{color:#52606d;margin-bottom:16px;font-size:14.5px}
+.cols{display:flex;gap:28px;align-items:flex-start}
+.col{flex:1;border-radius:14px;padding:16px 18px 18px}
+.v1{background:#fdf2f2;border:2px solid #e3a6a6}.v2{background:#eef6ff;border:2px solid #8fb8ea}
+.col h2{margin:0 0 12px;font-size:20px}.col h2 span{font-size:14px;color:#52606d;font-weight:normal}
+.step{background:#fff;border-radius:10px;padding:9px 13px;border:1.5px solid #cbd2d9;font-size:14.5px;line-height:1.45}
+.step b{font-size:15.5px}.zh{color:#52606d;font-size:13px}.bad{color:#b42318}.good{color:#1a7f37}
+.arrow{text-align:center;font-size:21px;color:#7b8794;line-height:24px}
+.shared{background:#f5f7fa;border:2px dashed #9aa5b1;border-radius:12px;padding:11px 16px;margin-top:16px;font-size:14.5px;line-height:1.5}
+.split{display:flex;gap:12px}.split .step{flex:1}.hl{background:#fff8e1;border-color:#f0c36d}
+.foot{color:#7b8794;font-size:12px;margin-top:10px}
+</style></head><body>
+<h1>Literature RAG text layer: v1 vs v2 pipeline</h1>
+<div class="sub">文獻 RAG 文字層：v1（舊版）與 v2（新版）處理流程 · CEA literature corpus, ~460 papers · same embedding model and index schema in both versions</div>
+<div class="cols">
+<div class="col v1"><h2>v1 — original <span>舊版</span></h2>
+<div class="step"><b>① PDF files</b><div class="zh">PDF 文獻</div><span class="bad">✗ fixed file paths: 78 papers broke after files were renamed</span></div><div class="arrow">↓</div>
+<div class="step"><b>② Page-by-page text extraction</b> (pdfplumber)<div class="zh">逐頁抓字</div><span class="bad">✗ two-column pages: left and right columns interleaved line by line</span></div><div class="arrow">↓</div>
+<div class="step"><b>③ Concatenate full text</b><div class="zh">全文接成一長串</div><span class="bad">✗ page numbers, headers/footers, DOIs, journal metadata, captions and table fragments kept</span><br><span class="bad">✗ line-break hyphenation and ligatures not fixed</span></div><div class="arrow">↓</div>
+<div class="step"><b>④ Section detection</b>: a line must exactly match a section name<div class="zh">章節判斷：整行等於章節名才算</div><span class="bad">✗ 62% of chunks labelled “other”; unlabelled abstracts missed</span></div><div class="arrow">↓</div>
+<div class="step"><b>⑤ Fixed 500-word chunks</b> (80-word overlap)<div class="zh">每 500 字硬切</div><span class="bad">✗ chunks often split mid-sentence</span></div><div class="arrow">↓</div>
+<div class="step"><b>⑥ Embedding</b> (nomic-embed-text, 768-d)<div class="zh">向量化</div></div><div class="arrow">↓</div>
+<div class="step hl"><b>⑦ v1 index</b> — 11,258 chunks<div class="zh">舊版索引（目前使用中）</div></div>
+</div>
+<div class="col v2"><h2>v2 — rebuilt <span>新版</span></h2>
+<div class="step"><b>① PDF files + path recovery</b><div class="zh">PDF 文獻＋路徑修復</div><span class="good">✓ 74 renamed papers re-linked by content matching; 3 duplicates excluded</span></div><div class="arrow">↓</div>
+<div class="step" style="border:2.5px solid #3e7bd6"><b>② Shared extraction module</b> <span class="zh">共用擷取模組</span><br>
+• Block coordinates (pdftotext -bbox-layout) → <span class="good">column-aware reading order</span> (left column, then right); scanned PDFs fall back to plain mode<br>
+• <span class="good">Removes</span> page numbers, running headers/footers, journal metadata, publisher side panels, captions, table fragments<br>
+• <span class="good">Fixes</span> line-break hyphenation and ligatures<br>
+• <span class="good">Section detection</span>: numbered, letter-spaced and small-caps headings, inline “Abstract—”, unlabelled abstracts; everything after References dropped<br>
+• CJK support (Japanese/Chinese punctuation and headings)<br>
+• Output: structured document (sections + paragraphs), cached</div><div class="arrow">↓</div>
+<div class="split">
+<div class="step"><b>③ RAG chunking</b><div class="zh">RAG 切塊</div><span class="good">✓ sentence-aligned</span> ~500 words, ~80 overlap<br><span class="good">✓ correct section labels</span><div class="arrow">↓</div><b>④ Embedding</b> (same model)<div class="arrow">↓</div><b>⑤ v2 index</b><div class="zh">新版索引（評測中）</div></div>
+<div class="step"><b>③’ Read-aloud</b><div class="zh">英文朗讀</div>speakable rewrite: units, statistics, abbreviations<div class="arrow">↓</div><b>④’ Text-to-speech</b> (Kokoro)<div class="arrow">↓</div><b>⑤’ Voice message</b><br><span class="good">✓ what you hear = what the index holds</span><br><span class="zh">listener flags → extraction rule fixes</span></div>
+</div></div></div>
+<div class="shared"><b>Shared by both versions:</b> same vector database, embedding model and chunk schema — switching versions only changes which index is read, and v1 is kept for rollback.
+<b>Next:</b> retrieval evaluation (known-item + pooled topic queries), learning-based baseline (GROBID/Docling), figure and table handling.
+<br><span class="zh">兩版共用同一個向量資料庫、向量模型與欄位；切換只改讀取的索引，舊版保留可回退。下一步：檢索評測、學習式工具比較組、圖表處理。</span></div>
+<div class="foot">listen-to-your-rag · CC BY-SA 4.0 · first-pass statistics (2026-10-21); final numbers will follow the consistent rebuild</div>
+</body></html>
