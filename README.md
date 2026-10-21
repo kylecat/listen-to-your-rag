@@ -18,6 +18,12 @@ Our first RAG index (v1) extracted PDFs page by page and split text every 500 wo
 
 The rebuilt pipeline (v2) uses one shared extraction module for **both** the RAG index and a text-to-speech read-aloud tool, so what a human hears is exactly what the retriever indexes — turning listening practice into a **quality audit of the RAG corpus**.
 
+## Pipeline at a glance
+
+![v1 vs v2 pipeline: original page-by-page extraction vs. column-aware shared extraction feeding both the RAG index and read-aloud](docs/figures/pipeline-v1-v2.png)
+
+Left: the original index (v1). Right: the rebuilt pipeline (v2) — one shared extraction module feeds both the RAG index and the read-aloud tool. Details: [docs/method-v1-v2.md](docs/method-v1-v2.md).
+
 ## Preliminary results
 
 **Evaluation 1 — known-item queries** (2026-10-21; v1 vs v2; 100 questions, one gold paper each; full report: [docs/results/eval1-known-item-2026-10-21.md](docs/results/eval1-known-item-2026-10-21.md); metric guide: [metrics-guide.md](docs/results/metrics-guide.md))

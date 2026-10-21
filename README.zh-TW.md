@@ -18,6 +18,12 @@
 
 重建後的流程（v2）讓 **RAG 索引**和**英文朗讀工具**共用同一個擷取模組：人耳聽到的內容，就是檢索系統索引的內容。練聽力的同時，也等於在**稽核 RAG 語料的品質**。
 
+## 流程一覽
+
+![v1 與 v2 處理流程：舊版逐頁擷取，對照新版依欄位重排的共用擷取模組，同時供給 RAG 索引與朗讀](docs/figures/pipeline-v1-v2.png)
+
+左：原本的索引（v1）。右：重建後的流程（v2），由同一個擷取模組同時供給 RAG 索引與朗讀工具。詳見 [docs/method-v1-v2.md](docs/method-v1-v2.md)。
+
 ## 初步結果
 
 **評測 1：已知答案查詢**（2026-10-21；v1 對 v2；100 題，每題只有 1 篇正確論文；完整報告：[docs/results/eval1-known-item-2026-10-21.md](docs/results/eval1-known-item-2026-10-21.md)；指標說明：[metrics-guide.md](docs/results/metrics-guide.md)）
