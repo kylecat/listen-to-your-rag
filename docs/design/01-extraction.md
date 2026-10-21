@@ -1,5 +1,7 @@
 # 01 · Extraction module specification / 擷取模組規格
 
+**English** | [繁體中文](01-extraction.zh-TW.md)
+
 > Version described: **0.1.4**. Purpose-agnostic: it knows nothing about RAG or speech. Pure standard library + poppler.
 > 與用途無關的擷取模組：不知道 RAG 或語音的存在，只輸出乾淨的結構化文字。
 

@@ -24,7 +24,7 @@
 |---|---|
 | [docs/method-v1-v2.md](docs/method-v1-v2.md) | v1 與 v2 文字處理流程、流程圖與第一輪結果 |
 | [docs/related-work.md](docs/related-work.md) | 相關學術研究與工具（皆附出處查證） |
-| [docs/design/](docs/design/00-overview.md) | **設計規格**（總覽、擷取、切塊與索引、朗讀、評測、驗收測試），不需要我們的程式碼也能重建系統（規格為英文） |
+| [docs/design/](docs/design/00-overview.zh-TW.md) | **設計規格**（總覽、擷取、切塊與索引、朗讀、評測、驗收測試），不需要我們的程式碼也能重建系統（中英文版） |
 | [harness/](harness/README.md) | **Harness**：用程式代理重建系統的常駐指示（`AGENTS.md`）、分階段建置計畫與驗收關卡、提示詞 |
 
 之後會陸續加入方法細節、評測流程、評測結果與圖表處理等文件。工作清單見 [Issues](https://github.com/kylecat/listen-to-your-rag/issues)。

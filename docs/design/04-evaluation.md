@@ -1,5 +1,7 @@
 # 04 · Evaluation design / 評測設計
 
+**English** | [繁體中文](04-evaluation.zh-TW.md)
+
 > Status: **planned, not yet run** ([#3](https://github.com/kylecat/listen-to-your-rag/issues/3), [#4](https://github.com/kylecat/listen-to-your-rag/issues/4)). Results will be published with date and pipeline version.
 
 ## Unit of evaluation / 評估單位

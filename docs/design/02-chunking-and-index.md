@@ -1,5 +1,7 @@
 # 02 · Chunking and index builder / 切塊與索引建置
 
+**English** | [繁體中文](02-chunking-and-index.zh-TW.md)
+
 > Consumes the extraction module ([01](01-extraction.md)); writes a new index next to the old one.
 
 ## 1. Chunk schema (identical in v1 and v2) / 段落欄位

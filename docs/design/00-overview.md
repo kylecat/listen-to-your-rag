@@ -1,5 +1,7 @@
 # 00 · System overview / 系統總覽
 
+**English** | [繁體中文](00-overview.zh-TW.md)
+
 > Design documents for rebuilding the system **without our code**: the specifications below are written so that a developer — or a coding agent driven by a harness (see [`../../harness/`](../../harness/)) — can re-implement each component and check it against the stated acceptance criteria.
 > 這組設計文件讓讀者**不需要我們的程式碼**也能重建系統：規格寫到足以讓開發者或由 harness 驅動的程式代理（見 `harness/`）逐一實作，並用驗收條件檢查。
 

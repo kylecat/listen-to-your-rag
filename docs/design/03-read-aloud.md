@@ -1,5 +1,7 @@
 # 03 · Read-aloud and listening audit / 朗讀與聽力稽核
 
+**English** | [繁體中文](03-read-aloud.zh-TW.md)
+
 > Turns the same section text the index uses into speech, so a listener hears what the retriever sees. Originally built as English listening practice; the audit is a side effect we now use deliberately.
 
 ## 1. Flow / 流程

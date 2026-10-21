@@ -1,5 +1,7 @@
 # 05 · Acceptance tests / 驗收測試
 
+**English** | [繁體中文](05-acceptance-tests.zh-TW.md)
+
 > Behavioural tests a re-implementation should pass. They mirror the unit tests of our (unpublished) code; inputs are synthetic text unless stated.
 
 ## 1. Extraction module
