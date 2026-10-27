@@ -8,8 +8,8 @@
 
 - **The approach is not new.** Layout-aware extraction of scientific PDFs and structure-aware chunking for RAG are established practice with clear prior work [1]–[3], [6], [7].
   **這套做法不是新發現**：學術 PDF 的版面感知擷取、依文件結構切塊，都有明確的前人研究與成熟工具 [1]–[3], [6], [7]。
-- **Rule-based parsers are known to be weak on scientific papers.** Our pipeline is rule-based, so a comparison with learning-based tools (GROBID, Docling, Nougat) is an important direction for future work [4].
-  **規則式解析在科學論文上普遍吃虧**；我們的流程是規則式的，與學習式工具的比較是重要的未來發展方向 [4]。
+- **Rule-based parsers are known to be weak on scientific papers.** Our pipeline is rule-based, so a comparison with learning-based tools (GROBID, Docling, Nougat) was needed [4]. *Update 2026-10-24:* a Docling baseline tied with v2 on our known-item benchmark ([Evaluation 1b](results/eval1-known-item-v3-docling-2026-10-24.md)).
+  **規則式解析在科學論文上普遍吃虧**；我們的流程是規則式的，因此需要與學習式工具比較 [4]。*2026-10-24 更新*：Docling 比較組在本專案的已知答案評測上與 v2 打平（[評測 1b](results/eval1-known-item-v3-docling-2026-10-24.md)）。
 - **We found no formal study using text-to-speech read-aloud as a quality audit of a RAG corpus.** Only PDF reader guidance (listening helps catch missing or repeated words and awkward sentences) and TTS for mathematical documents [12], [13]. To claim this as a contribution, flagged issues and before/after retrieval effects need to be logged systematically.
   **查不到「用朗讀稽核 RAG 語料」的正式研究**，只有 PDF 朗讀軟體的校對建議與數學文件 TTS [12], [13]。要主張這是貢獻，需要系統化記錄回報的問題類型與修正前後的檢索差異。
 - **Figures and tables are the main remaining gap.** Our current pipeline drops captions and table remnants, yet key quantitative results often sit in tables [14]–[17].
@@ -25,7 +25,7 @@ Scientific PDFs encode positioned glyphs rather than paragraphs and sections, so
 
 *Implications for this work.*
 - The failures observed in our v1 index (interleaved columns, missing section labels) are those predicted by [4].
-- Our v2 extractor is rule-based and therefore belongs to the class that [4] found weakest on scientific documents; comparing it with a learning-based tool such as GROBID or Docling is therefore an important direction for future work ([#5](https://github.com/kylecat/listen-to-your-rag/issues/5)).
+- Our v2 extractor is rule-based and therefore belongs to the class that [4] found weakest on scientific documents; we therefore compared it with Docling ([#5](https://github.com/kylecat/listen-to-your-rag/issues/5)); GROBID remains untested.
 - Because parser quality depends on document type [4], [5], conclusions must be drawn from measurements on our own corpus.
 
 科學論文 PDF 儲存的是帶座標的字元，而非段落與章節，因此多欄排版、頁首頁尾、公式與表格會使直接擷取的文字失真。既有研究從三個方向處理此問題：
@@ -36,7 +36,7 @@ Scientific PDFs encode positioned glyphs rather than paragraphs and sections, so
 
 *對本研究的意涵：*
 - v1 索引的問題（左右欄混雜、缺少章節標籤）正是 [4] 所預期的失誤類型。
-- v2 擷取器屬於規則式方法，即 [4] 認為在科學論文上最弱的一類；因此與 GROBID 或 Docling 等學習式工具的比較，是重要的未來發展方向。
+- v2 擷取器屬於規則式方法，即 [4] 認為在科學論文上最弱的一類；因此我們已與 Docling 比較（[#5](https://github.com/kylecat/listen-to-your-rag/issues/5)）；GROBID 尚未測試。
 - 解析品質取決於文件類型 [4], [5]，結論須以本研究語料的實測為準。
 
 | Work | Source | Key point / 重點 |

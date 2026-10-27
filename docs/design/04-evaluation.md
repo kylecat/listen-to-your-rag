@@ -2,7 +2,7 @@
 
 **English** | [繁體中文](04-evaluation.zh-TW.md)
 
-> Status: **planned, not yet run** ([#3](https://github.com/kylecat/listen-to-your-rag/issues/3), [#4](https://github.com/kylecat/listen-to-your-rag/issues/4)). Results will be published with date and pipeline version.
+> Status: Evaluation 1 **done** ([#3](https://github.com/kylecat/listen-to-your-rag/issues/3), [#5](https://github.com/kylecat/listen-to-your-rag/issues/5)); Evaluation 2 **planned** ([#4](https://github.com/kylecat/listen-to-your-rag/issues/4)). Results are published with date and pipeline version.
 
 ## Unit of evaluation / 評估單位
 
@@ -33,7 +33,7 @@ Per-query paired comparison: Wilcoxon signed-rank test and bootstrap 95% CI (10,
 
 ## Baselines / 比較組
 
-The current evaluation compares v1 (original) and v2 (this pipeline). Adding a learning-based extractor (GROBID or Docling) with the same chunking and embedding model is **future work** ([#5](https://github.com/kylecat/listen-to-your-rag/issues/5)).
+v1 (original), v2 (this pipeline) and v3, a learning-based baseline: Docling extraction followed by v2's sectioning, chunking and embedding, so only the extractor differs ([#5](https://github.com/kylecat/listen-to-your-rag/issues/5); results: [Evaluation 1b](../results/eval1-known-item-v3-docling-2026-10-24.md)). GROBID is not yet tested.
 
 ## Threats to validity / 效度威脅
 

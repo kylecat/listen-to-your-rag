@@ -1,7 +1,7 @@
 # 04 · 評測設計（Evaluation design）
 [English](04-evaluation.md) | **繁體中文**
 
-> 狀態：**已規劃，尚未執行**（[#3](https://github.com/kylecat/listen-to-your-rag/issues/3)、[#4](https://github.com/kylecat/listen-to-your-rag/issues/4)）。結果發布時會註明日期與處理流程版本。
+> 狀態：評測 1 **已完成**（[#3](https://github.com/kylecat/listen-to-your-rag/issues/3)、[#5](https://github.com/kylecat/listen-to-your-rag/issues/5)）；評測 2 **規劃中**（[#4](https://github.com/kylecat/listen-to-your-rag/issues/4)）。結果發布時註明日期與處理流程版本。
 
 ## 評估單位
 
@@ -32,7 +32,7 @@
 
 ## 比較組
 
-目前的評測比較 v1（原版）與 v2（本處理流程）。加入以學習為基礎的擷取器（GROBID 或 Docling，使用相同的切塊方式與向量模型）列為**未來發展方向**（[#5](https://github.com/kylecat/listen-to-your-rag/issues/5)）。
+v1（原版）、v2（本處理流程）與 v3（學習式比較組：以 Docling 擷取，之後的章節判斷、切塊與向量模型都與 v2 相同，因此只差在擷取工具；[#5](https://github.com/kylecat/listen-to-your-rag/issues/5)，結果見[評測 1b](../results/eval1-known-item-v3-docling-2026-10-24.md)）。GROBID 尚未測試。
 
 ## 效度威脅
 

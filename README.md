@@ -26,25 +26,30 @@ Left: the original index (v1). Right: the rebuilt pipeline (v2) — one shared e
 
 ## Preliminary results
 
-**Evaluation 1 — known-item queries** (2026-10-21; v1 vs v2; 100 questions, one gold paper each; full report: [docs/results/eval1-known-item-2026-10-21.md](docs/results/eval1-known-item-2026-10-21.md); metric guide: [metrics-guide.md](docs/results/metrics-guide.md))
+**Evaluation 1 — known-item queries** (one gold paper per question). v3 is a learning-based baseline: Docling extraction followed by v2's own sectioning, chunking and embedding, so only the extractor differs.
+Reports: [v1 vs v2 (2026-10-21)](docs/results/eval1-known-item-2026-10-21.md) · [v1 vs v2 vs v3 (2026-10-24)](docs/results/eval1-known-item-v3-docling-2026-10-24.md) · [metric guide](docs/results/metrics-guide.md)
 
-| Metric | What it measures | v1 | v2 | Δ (95% CI) |
+**Table 1.** 98 questions (2 removed after corpus corrections; see report).
+
+| Metric | What it measures | v1 | v2 | v3 (Docling) |
 |---|---|---|---|---|
-| Hit@5 | gold paper in the top 5 | 0.950 | 0.980 | +0.030 (−0.010 to +0.080) |
-| Hit@10 | gold paper in the top 10 | 0.970 | 1.000 | +0.030 (0.000 to +0.070) |
-| MRR@10 | how high the gold paper ranks (1, ½, ⅓ … within top 10) | 0.852 | 0.895 | +0.043 (−0.009 to +0.099) |
-| F1@5 | precision–recall balance in the top 5 (max 0.333 with one gold paper) | 0.317 | 0.327 | +0.010 (−0.003 to +0.027) |
+| Hit@5 | gold paper in the top 5 | 0.949 | 0.980 | 0.980 |
+| Hit@10 | gold paper in the top 10 | 0.969 | 1.000 | 0.990 |
+| MRR@10 | how high the gold paper ranks (1, ½, ⅓ … within top 10) | 0.849 | 0.893 | 0.897 |
+| F1@5 | precision–recall balance in the top 5 (max 0.333 with one gold paper) | 0.316 | 0.327 | 0.327 |
 
-- v2 is numerically higher on every metric, but **no difference is statistically significant** (Wilcoxon p = 0.08–0.18).
-- **Ceiling effect:** both versions find the gold paper in the top 5 for 95–98% of questions, so this benchmark cannot separate them well. The pooled topic-query evaluation ([#4](https://github.com/kylecat/listen-to-your-rag/issues/4)) is expected to be more discriminating.
-- Excluding the 6 low-quality questions (94 questions) gives the same picture.
+- **v2 and v3 tie** (all v3 − v2 differences ≤ 0.01, not significant).
+- Both are numerically higher than v1, but **not significantly** (MRR@10 +0.04 to +0.05; all 95% CIs include 0).
+- **Ceiling effect:** 98% of questions find the gold paper in the top 5, so this benchmark separates versions poorly. The topic-query evaluation ([#4](https://github.com/kylecat/listen-to-your-rag/issues/4)) is pending.
+- v2 has been the production index since 2026-10-27: same retrieval quality as v3, at a fraction of the compute (CPU minutes vs. ≈ 0.4 s per page on GPU).
 
 ## Contents
 
 | Document | Description |
 |---|---|
 | [docs/method-v1-v2.md](docs/method-v1-v2.md) | v1 vs v2 text pipeline, flowchart and first-pass results |
-| [docs/results/eval1-known-item-2026-10-21.md](docs/results/eval1-known-item-2026-10-21.md) | Evaluation 1 results (known-item queries) |
+| [docs/results/eval1-known-item-2026-10-21.md](docs/results/eval1-known-item-2026-10-21.md) | Evaluation 1 results (known-item queries, v1 vs v2) |
+| [docs/results/eval1-known-item-v3-docling-2026-10-24.md](docs/results/eval1-known-item-v3-docling-2026-10-24.md) | Evaluation 1b: rule-based (v2) vs learning-based (v3, Docling) extraction |
 | [docs/results/metrics-guide.md](docs/results/metrics-guide.md) | How to read the evaluation metrics (EN + zh-TW) |
 | [docs/related-work.md](docs/related-work.md) | Related research and tools, verified with sources |
 | [docs/design/](docs/design/00-overview.md) | **Design specifications** (overview, extraction, chunking & index, read-aloud, evaluation, acceptance tests) — enough to rebuild the system without our code |
@@ -56,6 +61,8 @@ More documents (method details, evaluation protocol, results, figure/table handl
 
 | Date | Update |
 |---|---|
+| 2026-10-27 | v2 adopted as the production index. |
+| 2026-10-24 | Learning-based baseline (v3, Docling): ties with v2 on Evaluation 1 (#5). |
 | 2026-10-21 | Evaluation 1 (known-item, 100 questions): v2 ≥ v1 on all metrics but no significant difference; ceiling effect (#3). |
 | 2026-10-21 | Design specifications and agent harness published, so the system can be rebuilt from documents. |
 | 2026-10-21 | Method write-up and flowchart published (#1). |
@@ -63,7 +70,8 @@ More documents (method details, evaluation protocol, results, figure/table handl
 
 ## Scope and limitations
 
-- This is a **rule-based** layout approach. Published comparisons show rule-based parsers struggle on scientific papers relative to learning-based tools (e.g. Nougat, Docling, GROBID); comparing against such tools is left as **future work** (#5).
+- This is a **rule-based** layout approach. Published comparisons show rule-based parsers generally trail learning-based tools (e.g. Nougat, Docling, GROBID) on scientific papers. On our corpus, a Docling baseline did not retrieve better (#5); GROBID and Nougat were not tested.
+- Tables and figures are not yet indexed by any version.
 - Copyrighted papers, extracted text and model outputs derived from them are **not** distributed.
 - Results are from one domain corpus and may not generalise.
 
