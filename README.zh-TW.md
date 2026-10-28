@@ -43,6 +43,19 @@
 - **天花板效應**：98% 的題目都把正確論文排進前 5 名，本評測難以區分各版；主題查詢評測（[#4](https://github.com/kylecat/listen-to-your-rag/issues/4)）尚未進行。
 - 2026-10-27 起以 v2 作為線上索引：檢索效果與 v3 相同，運算成本低很多（只用 CPU、數分鐘，對比 GPU 每頁約 0.4 秒）。
 
+**圖表層試驗**（2026-10-28；10 篇論文、33 題答案只在圖上的題目；報告：[figure-layer-pilot-2026-10-28.md](docs/results/figure-layer-pilot-2026-10-28.md#繁體中文)；方法：[design/06](docs/design/06-figure-layer.zh-TW.md)）。AnsHit@10＝前 10 段中取回含有答案的段落。
+
+| 組別 | AnsHit@10 |
+|---|---|
+| v2／v3（圖說和表格被丟棄） | 0.091 |
+| v3-full（Docling 的 OCR、表格、SmolVLM） | 0.455 |
+| v2＋LLM 圖表描述 | 0.455 |
+| **合併組**（LLM 描述＋Docling 的圖說、OCR 文字、表格） | **0.667** |
+
+- 合併組優於任一單獨來源（p = 0.008）；加入圖表段落後，其他論文的檢索沒有出現誤判。
+- Docling 的小型圖片描述模型幾乎沒有幫助，它的進步來自圖說、OCR 文字和表格。
+- 從圖上讀回的數值（盲測）：對照作者報告值，相對誤差中位數 0.45%。
+
 ## 內容
 
 | 文件 | 說明 |
@@ -50,6 +63,8 @@
 | [docs/method-v1-v2.md](docs/method-v1-v2.md) | v1 與 v2 文字處理流程、流程圖與第一輪結果 |
 | [docs/results/eval1-known-item-2026-10-21.md](docs/results/eval1-known-item-2026-10-21.md) | 評測 1 結果（已知答案查詢，v1 對 v2） |
 | [docs/results/eval1-known-item-v3-docling-2026-10-24.md](docs/results/eval1-known-item-v3-docling-2026-10-24.md) | 評測 1b：規則式（v2）對學習式（v3，Docling）擷取 |
+| [docs/results/figure-layer-pilot-2026-10-28.md](docs/results/figure-layer-pilot-2026-10-28.md#繁體中文) | 圖表層試驗：圖說、OCR、表格與 LLM 圖表描述（10 篇） |
+| [docs/design/06-figure-layer.zh-TW.md](docs/design/06-figure-layer.zh-TW.md) | 圖表層方法、推估數值的標註規則、Docling／SmolVLM 架構；[流程圖](docs/figures/figure-layer/) |
 | [docs/results/metrics-guide.md](docs/results/metrics-guide.md) | 評測指標判讀說明（中英） |
 | [docs/related-work.md](docs/related-work.md) | 相關學術研究與工具（皆附出處查證） |
 | [docs/design/](docs/design/00-overview.zh-TW.md) | **設計規格**（總覽、擷取、切塊與索引、朗讀、評測、驗收測試），不需要我們的程式碼也能重建系統（中英文版） |
@@ -61,6 +76,7 @@
 
 | 日期 | 更新 |
 |---|---|
+| 2026-10-28 | 圖表層試驗（10 篇）：圖說＋OCR＋表格＋LLM 描述合併後，取回圖上答案的效果最好（#6–#8）。 |
 | 2026-10-27 | v2 上線，成為線上索引。 |
 | 2026-10-24 | 學習式比較組（v3，Docling）：評測 1 與 v2 打平（#5）。 |
 | 2026-10-21 | 評測 1（已知答案查詢，100 題）：v2 各指標皆不低於 v1，但差異未達顯著；有天花板效應（#3）。 |
@@ -71,7 +87,7 @@
 ## 範圍與限制
 
 - 本方法是**規則式**的版面處理。已發表的比較研究顯示，規則式解析工具在科學論文上普遍不如學習式工具（例如 Nougat、Docling、GROBID）。在本語料上，Docling 比較組的檢索效果並未較好（#5）；GROBID 與 Nougat 尚未測試。
-- 各版都還沒有把表格與圖納入索引。
+- 線上索引尚未納入圖與表；10 篇的圖表層試驗結果見上方。
 - **不散布**受版權保護的論文、擷取出來的文字，以及由這些內容產生的模型輸出。
 - 結果來自單一領域的文獻庫，不一定能推廣到其他領域。
 
@@ -93,7 +109,8 @@ AI 負責的工作：
 - 搜尋並查證相關文獻；
 - 撰寫本 repo 的文件與圖；
 - 撰寫日文論文的英文摘要（在索引中標示為翻譯）；
-- 在評測中擔任 LLM 相關性判斷者，並以人工抽評計算一致性（Cohen's κ）檢核。
+- 在評測中擔任 LLM 相關性判斷者，並以人工抽評計算一致性（Cohen's κ）檢核；
+- 在圖表層試驗中：撰寫圖表描述（只含作者報告的數值）、撰寫評測題目，並以盲測方式從圖上讀數。這些產出不公開。
 
 範圍、資料處理、公開與授權等決策，皆由人類作者決定。
 
@@ -102,6 +119,8 @@ AI 負責的工作：
 |---|---|
 | 文字向量 | `nomic-embed-text`（768 維，透過 Ollama） |
 | 語音合成 | Kokoro-82M（ONNX），聲音 `af_bella` |
+| PDF 版面／OCR／表格（Docling 2.141） | Heron（RT-DETRv2）、RapidOCR（PP-OCRv6）、TableFormer、EfficientNet 圖片分類 |
+| 圖片描述（Docling，僅試驗） | SmolVLM-256M-Instruct |
 
 ## 授權
 

@@ -43,6 +43,19 @@ Reports: [v1 vs v2 (2026-10-21)](docs/results/eval1-known-item-2026-10-21.md) ·
 - **Ceiling effect:** 98% of questions find the gold paper in the top 5, so this benchmark separates versions poorly. The topic-query evaluation ([#4](https://github.com/kylecat/listen-to-your-rag/issues/4)) is pending.
 - v2 has been the production index since 2026-10-27: same retrieval quality as v3, at a fraction of the compute (CPU minutes vs. ≈ 0.4 s per page on GPU).
 
+**Figure-layer pilot** (2026-10-28; 10 papers, 33 questions whose answer appears only in a figure; report: [figure-layer-pilot-2026-10-28.md](docs/results/figure-layer-pilot-2026-10-28.md); methods: [design/06](docs/design/06-figure-layer.md)). AnsHit@10 = a passage containing the answer is retrieved in the top 10.
+
+| Arm | AnsHit@10 |
+|---|---|
+| v2 / v3 (captions and tables dropped) | 0.091 |
+| v3-full (Docling OCR, tables, SmolVLM) | 0.455 |
+| v2 + LLM figure descriptions | 0.455 |
+| **Combined** (LLM descriptions + Docling captions, OCR text, tables) | **0.667** |
+
+- Combined is better than either source alone (p = 0.008); no misretrieval on other papers was observed.
+- Docling's small picture-description model contributed little; its gains came from captions, OCR text and tables.
+- Values read back from plots (blind): median relative error 0.45% against author-reported values.
+
 ## Contents
 
 | Document | Description |
@@ -50,6 +63,8 @@ Reports: [v1 vs v2 (2026-10-21)](docs/results/eval1-known-item-2026-10-21.md) ·
 | [docs/method-v1-v2.md](docs/method-v1-v2.md) | v1 vs v2 text pipeline, flowchart and first-pass results |
 | [docs/results/eval1-known-item-2026-10-21.md](docs/results/eval1-known-item-2026-10-21.md) | Evaluation 1 results (known-item queries, v1 vs v2) |
 | [docs/results/eval1-known-item-v3-docling-2026-10-24.md](docs/results/eval1-known-item-v3-docling-2026-10-24.md) | Evaluation 1b: rule-based (v2) vs learning-based (v3, Docling) extraction |
+| [docs/results/figure-layer-pilot-2026-10-28.md](docs/results/figure-layer-pilot-2026-10-28.md) | Figure-layer pilot: captions, OCR, tables and LLM figure descriptions (10 papers) |
+| [docs/design/06-figure-layer.md](docs/design/06-figure-layer.md) | Figure-layer methods, labelling rules for estimated values, Docling/SmolVLM architecture; [flowcharts](docs/figures/figure-layer/) |
 | [docs/results/metrics-guide.md](docs/results/metrics-guide.md) | How to read the evaluation metrics (EN + zh-TW) |
 | [docs/related-work.md](docs/related-work.md) | Related research and tools, verified with sources |
 | [docs/design/](docs/design/00-overview.md) | **Design specifications** (overview, extraction, chunking & index, read-aloud, evaluation, acceptance tests) — enough to rebuild the system without our code |
@@ -61,6 +76,7 @@ More documents (method details, evaluation protocol, results, figure/table handl
 
 | Date | Update |
 |---|---|
+| 2026-10-28 | Figure-layer pilot (10 papers): combined captions + OCR + tables + LLM descriptions retrieve figure-only answers best (#6–#8). |
 | 2026-10-27 | v2 adopted as the production index. |
 | 2026-10-24 | Learning-based baseline (v3, Docling): ties with v2 on Evaluation 1 (#5). |
 | 2026-10-21 | Evaluation 1 (known-item, 100 questions): v2 ≥ v1 on all metrics but no significant difference; ceiling effect (#3). |
@@ -71,7 +87,7 @@ More documents (method details, evaluation protocol, results, figure/table handl
 ## Scope and limitations
 
 - This is a **rule-based** layout approach. Published comparisons show rule-based parsers generally trail learning-based tools (e.g. Nougat, Docling, GROBID) on scientific papers. On our corpus, a Docling baseline did not retrieve better (#5); GROBID and Nougat were not tested.
-- Tables and figures are not yet indexed by any version.
+- Tables and figures are not in the production index yet; a 10-paper figure-layer pilot is reported above.
 - Copyrighted papers, extracted text and model outputs derived from them are **not** distributed.
 - Results are from one domain corpus and may not generalise.
 
@@ -93,7 +109,8 @@ What the AI did:
 - searched for and verified the related literature;
 - drafted the documents and figures in this repository;
 - wrote English summaries of Japanese-language papers (marked as translations in the index);
-- will act as the LLM relevance judge in the evaluation, checked against a human-judged subset (Cohen's κ reported).
+- will act as the LLM relevance judge in the evaluation, checked against a human-judged subset (Cohen's κ reported);
+- in the figure-layer pilot: wrote figure descriptions (author-reported numbers only), wrote the evaluation questions, and read values from plots in a blind setting. These outputs are not published.
 
 All decisions on scope, data handling, publication and licensing were made by the human author.
 
@@ -102,6 +119,8 @@ Other models used:
 |---|---|
 | Text embedding | `nomic-embed-text` (768-d, via Ollama) |
 | Text-to-speech | Kokoro-82M (ONNX), voice `af_bella` |
+| PDF layout / OCR / tables (Docling 2.141) | Heron (RT-DETRv2), RapidOCR (PP-OCRv6), TableFormer, EfficientNet figure classifier |
+| Picture description (Docling, pilot only) | SmolVLM-256M-Instruct |
 
 ## License
 

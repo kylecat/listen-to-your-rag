@@ -22,6 +22,7 @@ Turn a folder of academic PDFs (mostly English, some Japanese/Chinese; many two-
 | 3 | **Read-aloud** | section text → speakable text → speech → voice message; listener flags | [03-read-aloud.md](03-read-aloud.md) |
 | 4 | **Evaluation** | two indexes + query sets → retrieval metrics | [04-evaluation.md](04-evaluation.md) |
 | 5 | **Acceptance tests** | behaviour each component must satisfy | [05-acceptance-tests.md](05-acceptance-tests.md) |
+| 6 | **Figure layer** (pilot) | captions, OCR, tables and LLM figure descriptions; labelling of estimated values | [06-figure-layer.md](06-figure-layer.md) |
 
 ```
 PDF ─► [1 Extraction] ─► structured document ─┬─► [2 Chunk + embed] ─► vector index ─► agents / search UI

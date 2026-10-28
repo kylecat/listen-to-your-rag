@@ -21,6 +21,7 @@
 | 3 | **朗讀** | 章節文字 → 可念出的文字 → 語音 → 語音訊息；聆聽回報 | [03-read-aloud.zh-TW.md](03-read-aloud.zh-TW.md) |
 | 4 | **評估** | 兩個索引 + 查詢集 → 檢索指標 | [04-evaluation.zh-TW.md](04-evaluation.zh-TW.md) |
 | 5 | **驗收測試** | 各元件必須滿足的行為 | [05-acceptance-tests.zh-TW.md](05-acceptance-tests.zh-TW.md) |
+| 6 | **圖表層**（試驗） | 圖說、OCR、表格與 LLM 圖表描述；推估數值的標註 | [06-figure-layer.zh-TW.md](06-figure-layer.zh-TW.md) |
 
 ```
 PDF ─► [1 Extraction] ─► structured document ─┬─► [2 Chunk + embed] ─► vector index ─► agents / search UI
